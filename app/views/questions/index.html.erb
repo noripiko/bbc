@@ -1,0 +1,56 @@
+<div class="container-fluid">
+	<div class="main-message">
+		<div class="container">
+			<h1>さらなる高みへ</h1>
+			<p>野球人の、野球人による、野球人のためのサイトです！</p>
+		</div>
+	</div>
+	<div class="sab-title">
+		質問一覧
+	</div>
+	<div class="sent">
+		<h6><a href="/questions/new" class="btn-text-3d">質問してみる</a></h6>
+	</div>
+	<div class="row">
+		<% @question.each do |q| %>
+			<div class="col-sm-12 col-md-4">
+				<div class="thumbnail rivals">
+					<div class="rivals-header">
+						<span class="rivals-nickname"><%= q.user.nickname %></span>
+						<div class="batu">
+							<% if user_signed_in? && current_user.id == q.user_id %>
+							    <%= link_to '❌', "/questions/#{q.id}", method: :delete, "data-confirm" => "削除され、
+							    修復はできません。よろしいですか？", :class => "class_1"%>
+							<% end %>
+						</div>
+					</div>
+					<div class="caption rivals-text">
+						<a class="btn-maru" href="/questions/<%= q.id %>">
+						<span>Q .</span><%= q.word %>
+						<p><%= q.text %></p>
+						</a>
+					</div>
+					<div class="rivals-content">
+						<ul class="rivals-info">
+							<li><%= q.group %></li>
+						</ul>
+						<a href="/questions/<%= q.id %>" class="btn-right-radius">コメント</a>
+					</div>
+					<div class="rivals-comment caption">
+						<i class="fa fa-bell-o">回答数
+						</i>
+						<span>
+							<%= q.comments.size %>
+						</span>
+					</div>
+					<div class="rivals-time">
+						<%= q.created_at.strftime("%Y-%m-%d %H:%M") %>
+					</div>
+				</div>
+			</div>
+		<% end %>
+	</div>
+	<div class="page-box">
+    <span class="page-xx"><%= paginate(@question) %></span>
+  </div>
+</div>

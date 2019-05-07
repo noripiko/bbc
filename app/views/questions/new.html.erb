@@ -1,0 +1,25 @@
+
+<div class="create-box">
+  <%= form_tag('/questions', method: :post, multipart: :true) do %>
+   <form>
+      <h3>投稿する</h3>
+      <div class="form-group">
+        <label for="formGroupExampleInput">質問タイトル</label>
+        <input type="text" name="word" class="form-control" id="formGroupExampleInput" placeholder="質問のタイトル">
+      </div>
+      <div class="form-group">
+        <label for="formGroupExampleInput">質問を詳しく</label>
+        <input type="text" name="text" class="form-control" id="formGroupExampleInput" placeholder="質問を詳しくうかいてくだいさい">
+      </div>
+      <div class="form-group">
+        <label for="formGroupExampleInput">テーマ</label>
+        <input type="string" name="group" class="form-control" id="formGroupExampleInput" placeholder="テーマを入力">
+      </div>
+      <div class="form-group form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  <% end %>
+</div>

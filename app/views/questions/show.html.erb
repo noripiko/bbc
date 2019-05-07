@@ -1,0 +1,28 @@
+<div class="show-box">
+	<div class="box19">
+		<p>Q . <%= @question.word %></p>
+	</div>
+	<div class="show-main">
+		<p><%= @question.text %></p>
+	</div>
+	<div>
+    <h4>＜回答一覧＞</h4>
+        <div class="comments">   
+          <% if @comments %>
+            <% @comments.each do |comment| %>
+              <p>
+                <strong><%= link_to comment.user.nickname, "/users/#{comment.user_id}" %>：</strong>
+                <%= comment.comment %>
+                <time> (<%= time_ago_in_words comment.created_at %>前)</time>
+              </p>
+            <% end %>
+          <% end %>
+        </div>
+        <% if current_user %>
+          <%= form_tag("/questions/#{@question.id}/comments", method: :post) do %>
+            <textarea name="comment" placeholder="コメントする" rows="2" cols="30"></textarea>
+            <input type="submit" value="SENT">
+          <% end %>
+        <% end %>
+    </div>
+</div>
